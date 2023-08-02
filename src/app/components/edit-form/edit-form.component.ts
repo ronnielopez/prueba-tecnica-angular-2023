@@ -32,10 +32,14 @@ export class EditFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
-    
   }
 
+  ngOnChanges():void {
+    if (this.empleado) {
+      this.getInitials(this.empleado);
+    }
+  }
+  
   handleEditEmployeer(values: any, isValid: any) {
     if (isValid) {
       const body = {

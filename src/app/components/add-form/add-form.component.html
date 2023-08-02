@@ -35,7 +35,7 @@
                 </label>
                 <input
                   class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                  id="grid-email" type="email" placeholder="Ingrese un correo" name='email' required #search='ngModel'
+                  id="grid-email" type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" placeholder="Ingrese un correo" name='email' required #search='ngModel'
                   [ngModel]='email'>
               </div>
             </div>

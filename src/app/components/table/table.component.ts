@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Modal } from 'flowbite';
 import { HomeService } from 'src/app/modules/home/home.service';
 import Swal from 'sweetalert2';
 
@@ -107,6 +108,9 @@ export class TableComponent implements OnInit {
   // function para seleccionar el Id del empleado
   selectId(empleado: any) {
     this.selectedEmpleado = empleado;
+    const $targetEl = document.getElementById('edit-modal');
+    const modal = new Modal($targetEl);
+    modal.show();
   }
 
 }

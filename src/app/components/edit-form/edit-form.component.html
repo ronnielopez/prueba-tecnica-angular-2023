@@ -17,7 +17,7 @@
                 </label>
                 <input
                   class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                  id="grid-name" type="text" placeholder="Ingrese Nombre" name='name' required #search='ngModel'
+                  id="grid-name" type="text"  placeholder="Ingrese Nombre" name='name' required #search='ngModel'
                   [ngModel]='name'>
               </div>
               <div class="w-full md:w-1/3 px-3">
@@ -78,11 +78,11 @@
                 [ngModel]='address'>
             </div>
             <div class="flex justify-center mt-8 pb-10">
-              <a href="/" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-4">
+              <a data-modal-hide="edit-modal" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-4">
                 Cancelar
               </a>
               <button class="bg-gray-900 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded" type="submit">
-                Agregar
+                Editar
               </button>
             </div>
           </form>
