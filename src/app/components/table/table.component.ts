@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Modal } from 'flowbite';
+import { FormServiceNew } from 'src/app/form.service';
 import { HomeService } from 'src/app/modules/home/home.service';
 import Swal from 'sweetalert2';
 
@@ -9,8 +10,9 @@ import Swal from 'sweetalert2';
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit {
-  //los pokemones
+  //los 
   empleados: any[] = [[]];
+  departamentos: any[] = [];
   //current page de la paginacion
   page = 0;
   //numero total de empleados
@@ -36,10 +38,13 @@ export class TableComponent implements OnInit {
 
   selectedEmpleado: any;
 
-  constructor(private _homeService: HomeService) { }
+  constructor(private _homeService: HomeService, private _formservice: FormServiceNew) { }
 
   ngOnInit(): void {
     this.getEmpleados(false);
+    this._formservice.getDepartamentos().subscribe((res: any) => {
+      this.departamentos = res;
+    });
   }
   //Obtiene todos los empleados que cargan al inicio
   getEmpleados(reset: boolean) {
@@ -113,6 +118,19 @@ export class TableComponent implements OnInit {
     modal.show();
   }
 
+  // hideModal() {
+  //   const $targetEl = document.getElementById('edit-modal');
+  //   const modal = new Modal($targetEl);
+  //   modal.hide();
+  //   // modal.toggle();
+  // }
+
+  getDepartamentosFind(id: string) {
+    const record = (this.departamentos.find((departamento) => departamento.id == id))
+    if (record) {
+      return record.nombre
+    }
+  }
 }
 function getKeysEspain(key: string) {
   switch (key) {

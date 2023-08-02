@@ -124,7 +124,7 @@
           {{empleado.telefono}}
         </td>
         <td class="px-6 py-4">
-          {{empleado.direcciones?.nombre_departamento}}
+          {{getDepartamentosFind(empleado.direcciones?.nombre_departamento)}}
         </td>
         <td class="px-6 py-4">
           {{empleado.direcciones?.nombre_municipio}}
@@ -162,4 +162,4 @@
   <pagination-controls [directionLinks]="true" [responsive]="responsive"
     (pageChange)="page = $event; empleados = []; getEmpleados(false);"></pagination-controls>
 </div>
-<app-edit-form [empleado]="selectedEmpleado"></app-edit-form>
+<app-edit-form [empleado]="selectedEmpleado" ></app-edit-form>

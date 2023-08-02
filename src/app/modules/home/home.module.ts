@@ -7,6 +7,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { HomeService } from './home.service';
 import { FormsModule } from '@angular/forms';
 import { EditFormComponent } from 'src/app/components/edit-form/edit-form.component';
+import { FormServiceNew } from 'src/app/form.service';
 
 
 @NgModule({
@@ -21,6 +22,6 @@ import { EditFormComponent } from 'src/app/components/edit-form/edit-form.compon
     FormsModule,
     NgxPaginationModule,
   ],
-  providers: [HomeService]
+  providers: [HomeService, FormServiceNew]
 })
 export class HomeModule { }

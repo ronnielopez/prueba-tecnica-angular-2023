@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormServiceNew } from 'src/app/form.service';
 import Swal from 'sweetalert2';
@@ -9,8 +9,14 @@ import Swal from 'sweetalert2';
   styleUrls: ['./edit-form.component.css']
 })
 export class EditFormComponent implements OnInit {
+  departments: any = [];
+  municipios: any = [];
+
   @Input()
   empleado: any
+
+  @Output()
+  hideModal: EventEmitter<any> = new EventEmitter<any>();
   //variable que almacena el input
   name: any;
   //variable que almacena el input
@@ -34,12 +40,18 @@ export class EditFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  ngOnChanges():void {
+  ngOnChanges(): void {
     if (this.empleado) {
+      this._formService.getDepartamentos().subscribe((res: any) => {
+        this.departments = res;
+      });
+      this._formService.getMunicipios(this.empleado.direcciones.nombre_departamento).subscribe((res: any) => {
+        this.municipios = res;
+      });
       this.getInitials(this.empleado);
     }
   }
-  
+
   handleEditEmployeer(values: any, isValid: any) {
     if (isValid) {
       const body = {
@@ -67,13 +79,22 @@ export class EditFormComponent implements OnInit {
   }
 
   getInitials(empleado: any) {
-      this.name = empleado.nombre;
-      this.email = empleado.correo;
-      this.phone = empleado.telefono;
-      this.lastName = empleado.apellidos;
-      this.municipio = empleado.direcciones.nombre_municipio;
-      this.department = empleado.direcciones.nombre_departamento;
-      this.address = empleado.direcciones.ubicacion;
-      this.idDirecciones = empleado.direcciones.id;
+    this.name = empleado.nombre;
+    this.email = empleado.correo;
+    this.phone = empleado.telefono;
+    this.lastName = empleado.apellidos;
+    this.municipio = empleado.direcciones.nombre_municipio;
+    this.department = empleado.direcciones.nombre_departamento;
+    this.address = empleado.direcciones.ubicacion;
+    this.idDirecciones = empleado.direcciones.id;
+  }
+  handleUpdateMunicipio(values: any) {
+    this._formService.getMunicipios(values).subscribe((res: any) => {
+      this.municipios = res;
+    });
+  }
+
+  hideModalEmit() {
+    this.hideModal.emit(null);
   }
 }

@@ -8,6 +8,10 @@ import Swal from "sweetalert2";
   styleUrls: ['./add-form.component.css']
 })
 export class AddFormComponent implements OnInit{
+
+  departments: any = [];
+  municipios: any = [];
+
   //variable que almacena el input
   name:any;
   //variable que almacena el input
@@ -30,6 +34,9 @@ export class AddFormComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    this._formService.getDepartamentos().subscribe((res: any) => {
+      this.departments = res;
+    });
   }
   handleCreateEmployeer(values : any , isValid : any){
     if(isValid){
@@ -56,4 +63,11 @@ export class AddFormComponent implements OnInit{
         Swal.fire('Error', 'Hay campos que no pueden estar vacio', 'error');
     }
 }
+ 
+handleUpdateMunicipio(values : any){
+  this._formService.getMunicipios(values).subscribe((res: any) => {
+    this.municipios = res;
+  });
+}
+
 }
