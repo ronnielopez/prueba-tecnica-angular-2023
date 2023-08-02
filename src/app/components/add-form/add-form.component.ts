@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output} from "@angular/core";
-import { FormService } from "src/app/modules/form/form.service";
+import { FormServiceNew } from "src/app/form.service";
 import Swal from "sweetalert2";
 
 @Component({
@@ -26,7 +26,7 @@ export class AddFormComponent implements OnInit{
   // Instancia para el servicio
 
 
-  constructor(private _formService: FormService) { 
+  constructor(private _formService: FormServiceNew) { 
   }
 
   ngOnInit(): void {

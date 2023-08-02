@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
 //import 'rxjs/add/observable/throw';
 
 @Injectable()
-export class FormService {
+export class FormServiceNew {
 
   private baseUrl = environment.baseUrl;
 

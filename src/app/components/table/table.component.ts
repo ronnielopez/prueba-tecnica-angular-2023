@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { HomeService } from 'src/app/modules/home/home.service';
 import Swal from 'sweetalert2';
 
@@ -33,6 +33,7 @@ export class TableComponent implements OnInit {
   lastName: any;
   //variable que almacena el input
 
+  selectedEmpleado: any;
 
   constructor(private _homeService: HomeService) { }
 
@@ -44,7 +45,7 @@ export class TableComponent implements OnInit {
     if (reset) {
       this.empleados = [];
       this.page = 0;
-      this.cantidad = 0;
+      this.cantidad = 4;
     }
     this._homeService
       .getEmployees(this.filtro, this.cantidad, this.page)
@@ -103,6 +104,10 @@ export class TableComponent implements OnInit {
     this.getEmpleados(true);
   }
 
+  // function para seleccionar el Id del empleado
+  selectId(empleado: any) {
+    this.selectedEmpleado = empleado;
+  }
 
 }
 function getKeysEspain(key: string) {
