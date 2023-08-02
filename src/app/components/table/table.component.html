@@ -66,10 +66,12 @@
               [ngModel]='phone'>
           </div>
           <div class="flex justify-center mt-8">
-            <a (click)="clearFilter()" data-modal-hide="authentication-modal" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-4">
+            <a (click)="clearFilter()" data-modal-hide="authentication-modal"
+              class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-4">
               Limpiar
             </a>
-            <button class="bg-gray-900 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded" type="submit" data-modal-hide="authentication-modal">
+            <button class="bg-gray-900 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded" type="submit"
+              data-modal-hide="authentication-modal">
               Agregar
             </button>
           </div>
@@ -128,11 +130,32 @@
         <td class="px-6 py-4">
           {{empleado.direcciones?.nombre_municipio}}
         </td>
-        <td class="px-6 py-4 text-right">
-          <a href="{{'form/edit/' + empleado.id}}"
-            class="font-medium text-blue-600 dark:text-blue-500 hover:underline mr-5">Edit</a>
-          <a href="#" (click)="deleteEmpleado(empleado.id)"
-            class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Delete</a>
+        <td class="px-6 py-4 text-right flex flex-wrap">
+          <div class="w-full md:w-1/2">
+            <a href="{{'form/edit/' + empleado.id}}"
+              class="font-medium text-blue-600 dark:text-blue-500 hover:underline mr-5"><svg
+                class="h-8 w-8 text-blue-600" width="10" height="10" viewBox="0 0 24 24" stroke-width="2"
+                stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" />
+                <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4" />
+                <line x1="13.5" y1="6.5" x2="17.5" y2="10.5" />
+              </svg></a>
+
+          </div>
+          <div class="w-full md:w-1/2">
+            <a href="#" (click)="deleteEmpleado(empleado.id)"
+              class="font-mediumtext-blue-600 dark:text-blue-500 hover:underline"><svg class="h-8 w-8 text-red-600"
+                width="10" height="10" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" />
+                <line x1="4" y1="7" x2="20" y2="7" />
+                <line x1="10" y1="11" x2="10" y2="17" />
+                <line x1="14" y1="11" x2="14" y2="17" />
+                <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+              </svg></a>
+
+          </div>
         </td>
       </tr>
     </tbody>

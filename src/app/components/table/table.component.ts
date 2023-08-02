@@ -59,20 +59,20 @@ export class TableComponent implements OnInit {
   // function para eleiminar un empleado
   deleteEmpleado(id: string) {
     Swal.fire({
-      title: 'Are you sure?',
-      text: 'You will not be able to recover this employee!',
+      title: 'Estas seguro de borrar este empleado?',
+      text: 'Se eliminara permanentemente el empleado!',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'No, keep it'
+      confirmButtonText: 'Si!',
+      cancelButtonText: 'No, conservarlo'
       //confirmButtonColor: '#3085d6',
       //cancelButtonColor: '#d33',
     }).then((result) => {
       if (result.isConfirmed) {
         this._homeService.deleteEmployee(id).subscribe((response: any) => {
           Swal.fire(
-            'Deleted!',
-            'Your employee has been deleted.',
+            'Eliminado!',
+            'El empleado ha sido eliminado correctamente.',
             'success'
           )
           this.getEmpleados(true);
