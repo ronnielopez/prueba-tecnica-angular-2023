@@ -15,12 +15,19 @@ export class HomeService {
 
   constructor(private http: HttpClient) { }
 
-  getEmployees(filter: any, inicio: number, fin: number): Observable<Object> {
-    return this.http.get(`${this.baseUrl}empleados?order=created_at.desc&select=*,direcciones(*)${filter}`, {
+  getEmployeesTotal(): Observable<Object> {
+    return this.http.get(`${this.baseUrl}empleados?select=*`, {
         headers: new HttpHeaders({
             'apikey': this.apiKey,
             'Authorization': `Bearer ${this.apiKey}`,
-            'Range': `${inicio}-${fin}`
+        }),
+    }).pipe(catchError(this.errorHandler))
+  }
+  getEmployees(filter: any, inicio: number, fin: number): Observable<Object> {
+    return this.http.get(`${this.baseUrl}empleados?limit=${inicio}&offset=${fin}&order=created_at.desc&select=*,direcciones(*)${filter}`, {
+        headers: new HttpHeaders({
+            'apikey': this.apiKey,
+            'Authorization': `Bearer ${this.apiKey}`,
         }),
     }).pipe(catchError(this.errorHandler))
   }

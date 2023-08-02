@@ -16,7 +16,7 @@ export class TableComponent implements OnInit {
   totalEmpleados: number = 0;
 
   //numero de empleados por pagina
-  cantidad: number = 0;
+  cantidad: number = 4;
 
   //valores de pagination
   responsive: boolean = true;
@@ -47,13 +47,14 @@ export class TableComponent implements OnInit {
       this.cantidad = 0;
     }
     this._homeService
-      .getEmployees(this.filtro, this.cantidad, this.cantidad + 5)
+      .getEmployees(this.filtro, this.cantidad, this.page)
       .subscribe((response: any) => {
         //contando los pokemones enviado
-        this.totalEmpleados = response.length;
         this.empleados = response;
-        this.cantidad += 5;
       });
+    this._homeService.getEmployeesTotal().subscribe((response: any) => {
+      this.totalEmpleados = response.length;
+    });
   }
 
   // function para eleiminar un empleado
